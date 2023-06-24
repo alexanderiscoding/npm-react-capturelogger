@@ -1,0 +1,27 @@
+{
+  "name": "react-native-capturelogger",
+  "version": "2.0.5",
+  "description": "Capturelogger for React Native",
+  "main": "main.cjs",
+  "type": "module",
+  "types": "./index.d.ts",
+  "scripts": {
+    "build": "rollup index.js --file main.cjs --format cjs",
+    "build-types": "npx -p typescript tsc index.js --declaration --allowJs --emitDeclarationOnly"
+  },
+  "keywords": [
+    "react-native-component",
+    "react-native",
+    "crash",
+    "bug",
+    "error",
+    "reporting"
+  ],
+  "author": "alexanderiscoding",
+  "homepage": "https://docs.alexanderiscoding.com/package/react-native-capturelogger",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:alexanderiscoding/npm-react-capturelogger.git"
+  }
+}
