@@ -1,12 +1,12 @@
 {
   "name": "react-native-capturelogger",
-  "version": "2.0.5",
+  "version": "2.0.6",
   "description": "Capturelogger for React Native",
-  "main": "main.cjs",
+  "main": "bundle.cjs",
   "type": "module",
   "types": "./index.d.ts",
   "scripts": {
-    "build": "rollup index.js --file main.cjs --format cjs",
+    "build": "rollup --config rollup.config.js",
     "build-types": "npx -p typescript tsc index.js --declaration --allowJs --emitDeclarationOnly"
   },
   "keywords": [

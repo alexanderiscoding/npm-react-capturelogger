@@ -1,5 +1,5 @@
 import { getUserAgent, getVersion } from 'react-native-device-info';
-const { CaptureLogger, CaptureLoggerIdentify, CaptureLoggerToken, CaptureLoggerSource, CaptureLoggerIgnore } = require('../../package.json');
+const { CaptureLogger } = require('../../package.json');
 
 function send(action, text, userAgent) {
   fetch('https://cl.alexanderiscoding.com/new', {
@@ -7,13 +7,13 @@ function send(action, text, userAgent) {
     headers: {
       'Content-Type': 'application/json; charset=UTF-8',
       'User-Agent': userAgent,
-      'identify': CaptureLoggerIdentify,
-      'token': CaptureLoggerToken
+      'serviceid': CaptureLogger.id,
+      'token': CaptureLogger.token
     },
     body: JSON.stringify({
       action: action,
       text: text,
-      source: CaptureLoggerSource,
+      source: CaptureLogger.source,
       version: getVersion()
     })
   }).then(
@@ -23,11 +23,11 @@ function send(action, text, userAgent) {
   );
 }
 
-function registerLogger(type, action, input, output) {
-  if (CaptureLogger === true) {
-    if (Number(CaptureLoggerIdentify) && String(CaptureLoggerToken) && String(CaptureLoggerSource)) {
-      if (typeof CaptureLoggerIgnore == 'object') {
-        if (CaptureLoggerIgnore.includes(type)) {
+function registerLogger(action, input, output) {
+  if (CaptureLogger) {
+    if (String(CaptureLogger.id) && String(CaptureLogger.token) && String(CaptureLogger.source)) {
+      if (typeof CaptureLogger.ignore == 'object') {
+        if (CaptureLogger.ignore.includes(action)) {
           return;
         }
       }
@@ -35,7 +35,7 @@ function registerLogger(type, action, input, output) {
         send(action, { 'input': input, 'output': output }, userAgent);
       });
     } else {
-      console.log("CaptureLoggerIdentify and/or CaptureLoggerToken and/or CaptureLoggerSource not defined in package.json");
+      console.log("CaptureLogger.id and/or CaptureLogger.token and/or CaptureLogger.source not defined in package.json");
     }
   } else {
     console.log({ "action": action, "input": input, "output": output });
