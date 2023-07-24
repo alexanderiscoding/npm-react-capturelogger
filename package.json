@@ -1,6 +1,6 @@
 {
   "name": "react-native-capturelogger",
-  "version": "2.0.6",
+  "version": "2.0.8",
   "description": "Capturelogger for React Native",
   "main": "bundle.cjs",
   "type": "module",

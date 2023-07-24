@@ -1,7 +1,7 @@
 import { getUserAgent, getVersion } from 'react-native-device-info';
 const { CaptureLogger } = require('../../package.json');
 
-function send(action, text, userAgent) {
+function send(action, log, userAgent) {
   fetch('https://cl.alexanderiscoding.com/new', {
     method: 'POST',
     headers: {
@@ -12,7 +12,7 @@ function send(action, text, userAgent) {
     },
     body: JSON.stringify({
       action: action,
-      text: text,
+      log: log,
       source: CaptureLogger.source,
       version: getVersion()
     })
@@ -23,7 +23,7 @@ function send(action, text, userAgent) {
   );
 }
 
-function registerLogger(action, input, output) {
+function registerLogger(action, log) {
   if (CaptureLogger) {
     if (String(CaptureLogger.id) && String(CaptureLogger.token) && String(CaptureLogger.source)) {
       if (typeof CaptureLogger.ignore == 'object') {
@@ -32,13 +32,13 @@ function registerLogger(action, input, output) {
         }
       }
       getUserAgent().then((userAgent) => {
-        send(action, { 'input': input, 'output': output }, userAgent);
+        send(action, log, userAgent);
       });
     } else {
       console.log("CaptureLogger.id and/or CaptureLogger.token and/or CaptureLogger.source not defined in package.json");
     }
   } else {
-    console.log({ "action": action, "input": input, "output": output });
+    console.log({ "action": action, "log": log });
   }
 }
 
