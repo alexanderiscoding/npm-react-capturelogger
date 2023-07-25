@@ -1,5 +1,5 @@
 export default {
-  input: 'index.js',
+  input: 'bundle.js',
   output: {
     file: 'bundle.cjs',
     format: 'cjs'
