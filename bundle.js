@@ -1,4 +1,4 @@
-import { getUserAgent, getVersion } from 'react-native-device-info';
+const { getUserAgent, getVersion } = require('react-native-device-info');
 const { CaptureLogger } = require('../../package.json');
 
 function send(action, log, userAgent) {
@@ -23,7 +23,7 @@ function send(action, log, userAgent) {
   );
 }
 
-function registerLogger(action, log) {
+export default (action, log) => {
   if (CaptureLogger) {
     if (String(CaptureLogger.id) && String(CaptureLogger.token) && String(CaptureLogger.source)) {
       if (typeof CaptureLogger.ignore == 'object') {
@@ -41,5 +41,3 @@ function registerLogger(action, log) {
     console.log({ "action": action, "log": log });
   }
 }
-
-export { registerLogger };
