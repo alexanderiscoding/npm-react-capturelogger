@@ -1,5 +1,5 @@
-const { getUserAgent, getVersion } = require('react-native-device-info');
-const { CaptureLogger } = require('../../package.json');
+import { getUserAgent, getVersion } from 'react-native-device-info';
+import { CaptureLogger } from '../../package.json';
 
 function send(action, log, userAgent) {
   fetch('https://cl.alexanderiscoding.com/new', {
@@ -14,7 +14,8 @@ function send(action, log, userAgent) {
       action: action,
       log: log,
       source: CaptureLogger.source,
-      version: getVersion()
+      version: getVersion(),
+      SenderMessage: CaptureLogger.SenderMessage
     })
   }).then(
     (response) => console.log(response.status == 200 ? 'CaptureLogger: send ' + action : 'CaptureLogger: not send ' + action + ' - status code: ' + response.status)

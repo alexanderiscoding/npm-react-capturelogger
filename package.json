@@ -1,12 +1,11 @@
 {
   "name": "react-native-capturelogger",
-  "version": "2.1.1",
+  "version": "2.1.3",
   "description": "Capturelogger for React Native",
-  "main": "bundle.cjs",
+  "main": "bundle.js",
   "type": "module",
   "types": "./bundle.d.ts",
   "scripts": {
-    "build": "rollup --config rollup.config.js",
     "build-types": "npx -p typescript tsc bundle.js --declaration --allowJs --emitDeclarationOnly"
   },
   "keywords": [
@@ -18,10 +17,13 @@
     "reporting"
   ],
   "author": "alexanderiscoding",
-  "homepage": "https://docs.alexanderiscoding.com/package/react-native-capturelogger",
   "license": "MIT",
   "repository": {
     "type": "git",
     "url": "git@github.com:alexanderiscoding/npm-react-capturelogger.git"
+  },
+  "peerDependencies": {
+    "react-native-snackbar": ">=10.7.0",
+    "react-native": ">=0.70.0"
   }
 }
