@@ -1,5 +1,6 @@
 import { getUserAgent, getVersion } from 'react-native-device-info';
 import { CaptureLogger } from '../../package.json';
+import { isObj, isString, isBoolean } from './validation';
 
 function send(action, log, userAgent) {
   fetch('https://cl.alexanderiscoding.com/new', {
@@ -7,8 +8,8 @@ function send(action, log, userAgent) {
     headers: {
       'Content-Type': 'application/json; charset=UTF-8',
       'User-Agent': userAgent,
-      'serviceid': CaptureLogger.id,
-      'token': CaptureLogger.token
+      'serviceid': CaptureLogger.serviceID,
+      'accesstoken': CaptureLogger.accessToken
     },
     body: JSON.stringify({
       action: action,
@@ -24,21 +25,62 @@ function send(action, log, userAgent) {
   );
 }
 
+function checkConfig() {
+  if (isObj(CaptureLogger)) {
+    console.log("CaptureLogger not configured in package.json");
+    return false;
+  } else {
+    if (!CaptureLogger.serviceID) {
+      console.log("CaptureLogger.serviceID not defined in package.json");
+      return false;
+    }
+    if (!CaptureLogger.accessToken) {
+      console.log("CaptureLogger.accessToken not defined in package.json");
+      return false;
+    }
+    if (!CaptureLogger.source) {
+      console.log("CaptureLogger.source not defined in package.json");
+      return false;
+    }
+    return true;
+  }
+}
+
+function validationConfig() {
+  if (!isString(CaptureLogger.serviceID)) {
+    console.log("CaptureLogger.serviceID invalid config in package.json");
+    return false;
+  }
+  if (!isString(CaptureLogger.accessToken)) {
+    console.log("CaptureLogger.accessToken invalid config in package.json");
+    return false;
+  }
+  if (!isString(CaptureLogger.source)) {
+    console.log("CaptureLogger.source invalid config in package.json");
+    return false;
+  }
+  return true;
+}
+
 export default (action, log) => {
-  if (CaptureLogger) {
-    if (String(CaptureLogger.id) && String(CaptureLogger.token) && String(CaptureLogger.source)) {
-      if (typeof CaptureLogger.ignore == 'object') {
-        if (CaptureLogger.ignore.includes(action)) {
+  if (checkConfig()) {
+    if (isBoolean(CaptureLogger.debug)) {
+      console.log({ "action": action, "log": log });
+    } else {
+      if (validationConfig()) {
+        if (isObj(CaptureLogger.ignore)) {
+          if (CaptureLogger.ignore.includes(action)) {
+            return;
+          }
+        }
+        if (!isString(action)) {
+          console.log("Action is not string.");
           return;
         }
+        getUserAgent().then((userAgent) => {
+          send(action, log, userAgent);
+        });
       }
-      getUserAgent().then((userAgent) => {
-        send(action, log, userAgent);
-      });
-    } else {
-      console.log("CaptureLogger.id and/or CaptureLogger.token and/or CaptureLogger.source not defined in package.json");
     }
-  } else {
-    console.log({ "action": action, "log": log });
   }
 }

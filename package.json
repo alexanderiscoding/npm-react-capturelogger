@@ -1,6 +1,6 @@
 {
   "name": "react-native-capturelogger",
-  "version": "2.1.3",
+  "version": "2.1.5",
   "description": "Capturelogger for React Native",
   "main": "bundle.js",
   "type": "module",
@@ -23,7 +23,7 @@
     "url": "git@github.com:alexanderiscoding/npm-react-capturelogger.git"
   },
   "peerDependencies": {
-    "react-native-snackbar": ">=10.7.0",
+    "react-native-snackbar": ">=2.6.0",
     "react-native": ">=0.70.0"
   }
 }
