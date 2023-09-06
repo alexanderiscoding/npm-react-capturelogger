@@ -4,6 +4,8 @@ Um complemento para reportar logs em seus projetos React Native.
 
 - Execute: `npm i react-native-device-info react-native-capturelogger`
 
+- Ative o serviço gratuitamente em [Alexanderiscoding](https://alexanderiscoding.com) > Conectar-me > Perfil > Serviços
+
 ## Configurando o package
 
 Adicione em seu package.json as definições necessárias
