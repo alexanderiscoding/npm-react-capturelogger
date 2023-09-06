@@ -26,7 +26,7 @@ function send(action, log, userAgent) {
 }
 
 function checkConfig() {
-  if (isObj(CaptureLogger)) {
+  if (!isObj(CaptureLogger)) {
     console.log("CaptureLogger not configured in package.json");
     return false;
   } else {
