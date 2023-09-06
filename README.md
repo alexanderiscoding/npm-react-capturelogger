@@ -20,7 +20,7 @@ Exemplo de um package.json
 
 ```json
 {
-  "name": "builder",
+  "name": "react-app",
   "version": "1.0",
   "private": true,
   "CaptureLogger": {
