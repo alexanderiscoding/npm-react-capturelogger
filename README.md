@@ -1,6 +1,8 @@
 # CaptureLogger for React Native
 
-Um complemento para reportar logs em seus projetos React Native.
+Trata-se de um package construído para utilizar a API no desenvolvimento de aplicativos React Native.
+
+Com ele, é possível integrar facilmente o serviço em projetos React Native, economizando tempo e garantindo que os dados sejam enviados de maneira rápida e eficiente.
 
 - Execute: `npm i react-native-device-info react-native-capturelogger`
 
