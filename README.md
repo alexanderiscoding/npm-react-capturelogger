@@ -6,7 +6,7 @@ Com ele, é possível integrar facilmente o serviço em projetos React Native, e
 
 - Execute: `npm i react-native-device-info react-native-capturelogger`
 
-- Ative o serviço gratuitamente em [Alexanderiscoding](https://alexanderiscoding.com) > Conectar-me > Perfil > Serviços
+- Ative o serviço gratuitamente em [Alexanderiscoding](https://alexanderiscoding.com)
 
 ## Configurando o package
 
